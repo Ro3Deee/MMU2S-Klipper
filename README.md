@@ -71,3 +71,11 @@ mmu_previous_slot = 5
 * MMU_REG_READ REG_ENTRY={register name}
 * MMU_RESET
 * MMU_SET_SPOOLJOIN ORDER={0,1,2,3,4} ORDER=0,1,2,3,4 syntax most significant first. Setting ORDER=-1 disables spool join
+
+## Using DECODE_FILAMENT_MAP and SMART_MMU_UNLOAD macros
+These macros were tested with OrcaSlicer and provide extra information to klipper about what filament slots are loaded.
+Copy these into the machine start gcode:
+```
+DECODE_FILAMENT_MAP FILAMENTS="{filament_type[0]},{filament_type[1]},{filament_type[2]},{filament_type[3]},{filament_type[4]}" TEMPS="{first_layer_temperature[0]},{first_layer_temperature[1]},{first_layer_temperature[2]},{first_layer_temperature[3]},{first_layer_temperature[4]}" NAMES="{filament_settings_id[0]},{filament_settings_id[1]},{filament_settings_id[2]},{filament_settings_id[3]},{filament_settings_id[4]}" INITIAL_TOOL={initial_tool}
+SMART_MMU_UNLOAD TIP_SHAPE=1
+```
